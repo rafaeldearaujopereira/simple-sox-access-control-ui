@@ -11,12 +11,15 @@ export default {
     return {
       username: "",
       password: "",
+      externalSessionId: "",
       errorMessage: null,
     };
   },
   setup() {
     const loggedIn = (response) => {
-      console.log(response);
+      if (response.data) {
+        console.log(response.data);
+      }
     };
 
     const submitForm = (user, pass) => {
@@ -52,8 +55,6 @@ export default {
         required
         autofocus
       />
-      <div v-if="v$.username.$error">{{ v$.username.$error.$message }}.</div>
-
       <label for="password" class="visually-hidden">Password</label>
       <input
         type="password"
@@ -62,11 +63,11 @@ export default {
         placeholder="Password"
         required
       />
-      <div v-if="v$.password.$error">{{ v$.password.$error.$message }}.</div>
 
       <button class="w-100 btn btn-md btn-primary" type="submit">
         Sign in
       </button>
+      <div v-if="errorMessage">{{ errorMessage }}.</div>
     </form>
   </main>
 </template>
