@@ -2,6 +2,8 @@
 import useVuelidate from "@vuelidate/core";
 import { required } from "@vuelidate/validators";
 
+import { ref } from 'vue'
+
 import axios from "axios";
 import querystring from "querystring";
 
@@ -10,20 +12,17 @@ export default {
   props: {
     sessionId: String
   },
-  data() {
-    return {
-      username: "",
-      password: "",
-      errorMessage: null,
-    };
-  },
   setup(props, { emit }) {
+    let username = ref()
+    let password = ref()
+    let errorMessage = ref()
+
     const loggedIn = (response) => {
       if (response.data) {
         console.log(response.data);
         emit('update:sessionId', response.data);
       } else {
-        //errorMessage = "Invalid username or password";
+        errorMessage.value = "Invalid username or password";
       }
     };
 
@@ -34,7 +33,12 @@ export default {
         .then((response) => loggedIn(response))
         .catch((error) => console.log(error));
     };
-    return { submitForm, v$: useVuelidate() };
+    return { 
+      submitForm, 
+      username, 
+      password, 
+      errorMessage, 
+      v$: useVuelidate() };
   },
   validations() {
     return {
@@ -71,7 +75,11 @@ export default {
       <button class="w-100 btn btn-md btn-primary" type="submit">
         Sign in
       </button>
-      <div v-if="errorMessage">{{ errorMessage }}.</div>
+      <br>
+      <br>
+      <div v-if="errorMessage" class="alert alert-danger" role="alert">
+        {{ errorMessage }}
+        </div>
     </form>
   </main>
 </template>
