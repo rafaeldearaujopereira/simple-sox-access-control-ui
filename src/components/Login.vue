@@ -19,6 +19,7 @@ export default {
     const loggedIn = (response) => {
       if (response.data) {
         console.log(response.data);
+        console.log("here, it must jump to the main page.")
       }
     };
 
