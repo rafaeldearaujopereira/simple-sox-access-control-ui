@@ -6,20 +6,24 @@ import axios from "axios";
 import querystring from "querystring";
 
 export default {
-  name: "login-form",
+  name: "loginForm",
+  props: {
+    sessionId: String
+  },
   data() {
     return {
       username: "",
       password: "",
-      externalSessionId: "",
       errorMessage: null,
     };
   },
-  setup() {
+  setup(props, { emit }) {
     const loggedIn = (response) => {
       if (response.data) {
         console.log(response.data);
-        console.log("here, it must jump to the main page.")
+        emit('update:sessionId', response.data);
+      } else {
+        //errorMessage = "Invalid username or password";
       }
     };
 
@@ -31,7 +35,6 @@ export default {
         .catch((error) => console.log(error));
     };
     return { submitForm, v$: useVuelidate() };
-
   },
   validations() {
     return {

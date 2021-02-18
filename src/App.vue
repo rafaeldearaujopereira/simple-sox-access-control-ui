@@ -5,13 +5,19 @@ document.title = "Access Control v 1.0";
 
 export default {
   name: "App",
-  components: { Login },
+  data () {
+    return {
+      sessionId: null
+    }
+  },
+  components: { Login }
 };
 </script>
 
 <template>
   <div class="text-center">
-    <Login />
+    <Login v-if="!sessionId" v-model:sessionId="sessionId" />
+    {{ sessionId }}
   </div>
 </template>
 
