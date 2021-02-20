@@ -17,6 +17,10 @@ export default {
     let password = ref()
     let errorMessage = ref()
 
+    const clearErrorMessage = () => {
+      errorMessage.value = "";
+    };
+
     const loggedIn = (response) => {
       if (response.data) {
         console.log(response.data);
@@ -35,6 +39,7 @@ export default {
     };
     return { 
       submitForm, 
+      clearErrorMessage,
       username, 
       password, 
       errorMessage, 
@@ -77,9 +82,10 @@ export default {
       </button>
       <br>
       <br>
-      <div v-if="errorMessage" class="alert alert-danger" role="alert">
+      <div v-if="errorMessage" class="alert alert-dismissible alert-danger fade show" role="alert">
         {{ errorMessage }}
-        </div>
+          <button  v-on:click="clearErrorMessage()" type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+      </div>
     </form>
   </main>
 </template>
@@ -93,7 +99,7 @@ body {
 
 .form-signin {
   width: 100%;
-  max-width: 330px;
+  max-width: 350px;
   padding: 15px;
   margin: auto;
 }
@@ -120,4 +126,5 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
 </style>
