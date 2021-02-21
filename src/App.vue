@@ -1,5 +1,6 @@
 <script>
 import Login from "./components/Login";
+import Main from "./views/Main";
 
 document.title = "Access Control v 1.0";
 
@@ -7,17 +8,21 @@ export default {
   name: "App",
   data () {
     return {
-      sessionId: null
+      sessionId: null,
     }
   },
-  components: { Login }
+  provide: {
+      systemFeatureCode: 'ACCESS_CONTROL_SYS',
+      servicePath: 'http://localhost:8888'
+  },
+  components: { Login, Main }
 };
 </script>
 
 <template>
   <div class="text-center">
-    <Login v-if="!sessionId" v-model:sessionId="sessionId" />
-    {{ sessionId }}
+    <Login v-if="!sessionId" v-model:sessionId="sessionId"/>
+    <Main v-if="sessionId" v-model:sessionId="sessionId"/>
   </div>
 </template>
 

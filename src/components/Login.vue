@@ -12,6 +12,7 @@ export default {
   props: {
     sessionId: String
   },
+  inject: ['servicePath'],
   setup(props, { emit }) {
     let username = ref()
     let password = ref()
@@ -30,10 +31,10 @@ export default {
       }
     };
 
-    const submitForm = (user, pass) => {
+    const submitForm = (user, pass, path) => {
       const credentials = { username: user, password: pass };
       axios
-        .post("http://localhost:8888/login", querystring.stringify(credentials))
+        .post(path + "/login", querystring.stringify(credentials))
         .then((response) => loggedIn(response))
         .catch((error) => console.log(error));
     };
@@ -50,13 +51,13 @@ export default {
       username: { required },
       password: { required },
     };
-  },
+  }
 };
 </script>
 
 <template>
   <main class="form-signin">
-    <form @submit.prevent="submitForm(username, password)">
+    <form @submit.prevent="submitForm(username, password, servicePath)">
       <h1 class="h3 mb-3 fw-normal">Login @ Access Control</h1>
 
       <label for="login" class="visually-hidden">Username</label>
