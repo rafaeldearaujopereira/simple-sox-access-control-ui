@@ -10,7 +10,6 @@ export default {
   components: { NavBar },
   setup(props, { emit }) {
     const clearSessionId = () => {
-      console.log('entrou na clearSession')
       emit("update:sessionId", "")
     };
     return { clearSessionId };

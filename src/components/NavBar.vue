@@ -29,24 +29,24 @@ export default {
 </script>
 
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand mb-0 h1" href="#">Access Control</a>
-    </div>
+  <nav class="nav d-flex flex-row bd-highlight mb-3 navbar-expand-lg navbar-light bg-light m-3 p-1">
+        <ul class="list-group list-group-horizontal navbar-nav align-middle">
+          <li class="nav-item m-1 align-middle">
+             <a class="navbar-brand h1" href="#">Access Control</a>
+          </li>
+          <li class="nav-item mx-1 align-middle">
+            <a class="nav-link" href="#">Configuration</a>
+          </li>
+          <li class="nav-item mx-1 align-middle">
+            <a class="nav-link" href="#">Reports</a>
+          </li>
+        </ul>
   </nav>
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <a class="navbar-brand mb-0 h1" href="#">Navbar</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">

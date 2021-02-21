@@ -24,7 +24,6 @@ export default {
 
     const loggedIn = (response) => {
       if (response.data) {
-        console.log(response.data);
         emit('update:sessionId', response.data);
       } else {
         errorMessage.value = "Invalid username or password";
