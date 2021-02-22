@@ -1,6 +1,6 @@
 <script>
 import axios from "axios";
-import { inject } from "vue";
+import { inject, onBeforeMount } from "vue";
 
 export default {
   name: "navBar",
@@ -14,17 +14,24 @@ export default {
       emit("logout");
     };
     const servicePath = inject("servicePath");
+    const systemFeatureCode = inject("systemFeatureCode");
     let featureCodeSelected = "";
     let featureTree = {};
-    let requestConfig = {
-      headers: { Authorization: "Bearer " + props.sessionId }
-    };
     const logout = () => {
+      const requestConfig = { headers: { Authorization: "Bearer " + props.sessionId }};
       axios
         .get(servicePath + "/logout", requestConfig)
         .then((response) => loggedOut(response))
         .catch((error) => console.log(error));
-    }
+    };
+    onBeforeMount(() => {
+      const setTree = (obj) => { featureTree = obj; console.log(featureTree) };
+      const requestConfig = { headers: { Authorization: "Bearer " + props.sessionId }, params: { featureCode: systemFeatureCode}};
+      axios
+        .get(servicePath + "/current-user/system-menu", requestConfig)
+        .then((response) => setTree(response.data))
+        .catch((error) => console.log(error));      
+    });
     return { logout, featureCodeSelected, featureTree };
   },
 };
