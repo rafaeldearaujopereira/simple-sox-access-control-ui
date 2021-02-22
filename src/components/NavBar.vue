@@ -14,91 +14,39 @@ export default {
       emit("logout");
     };
     const servicePath = inject("servicePath");
+    let featureCodeSelected = "";
+    let featureTree = {};
+    let requestConfig = {
+      headers: { Authorization: "Bearer " + props.sessionId }
+    };
     const logout = () => {
-      let config = {
-        headers: { Authorization: "Bearer " + props.sessionId },
-      };
       axios
-        .get(servicePath + "/logout", config)
+        .get(servicePath + "/logout", requestConfig)
         .then((response) => loggedOut(response))
         .catch((error) => console.log(error));
-    };
-    return { logout };
+    }
+    return { logout, featureCodeSelected, featureTree };
   },
 };
 </script>
 
 <template>
-  <nav class="nav d-flex flex-row bd-highlight mb-3 navbar-expand-lg navbar-light bg-light m-3 p-1">
-        <ul class="list-group list-group-horizontal navbar-nav align-middle">
-          <li class="nav-item m-1 align-middle">
-             <a class="navbar-brand h1" href="#">Access Control</a>
-          </li>
-          <li class="nav-item mx-1 align-middle">
-            <a class="nav-link" href="#">Configuration</a>
-          </li>
-          <li class="nav-item mx-1 align-middle">
-            <a class="nav-link" href="#">Reports</a>
-          </li>
-        </ul>
-  </nav>
-
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light p-1">
     <div class="container-fluid">
-      <a class="navbar-brand mb-0 h1" href="#">Navbar</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      <a class="navbar-brand mb-0 h1" href="#">
+          <img src="../assets/logo.png" alt="" width="30" height="30" class="d-inline-block align-top">
+          Access Control
+      </a>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="navbarDropdown"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Dropdown
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><hr class="dropdown-divider" /></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link disabled"
-              href="#"
-              tabindex="-1"
-              aria-disabled="true"
-              >Disabled</a
-            >
-          </li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Users</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Roles</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Features</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Event Report</a></li>
         </ul>
-        <form class="d-flex">
-          <input
-            class="form-control me-2"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-          />
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+        <button class="btn btn-outline-danger" type="submit" @click.prevent="logout">Logout</button>
       </div>
     </div>
   </nav>
 
-  <a @click="logout">Logout</a>
-  <div>for {{ systemFeatureCode }}</div>
-  <div>Session: {{ sessionId }}</div>
 </template>
