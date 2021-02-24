@@ -1,4 +1,4 @@
-# access-control-ui
+# access-control-ui (learning Vue @ Electron)
 
 ## Project setup
 ```
