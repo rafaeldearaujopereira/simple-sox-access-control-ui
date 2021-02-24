@@ -13,7 +13,12 @@ export default {
   },
   provide: {
       systemFeatureCode: 'ACCESS_CONTROL_SYS',
-      servicePath: 'http://localhost:8888'
+      servicePath: 'http://localhost:8888',
+      implementedFeatureCodes : [
+        "AC_SEARCH_USER",
+        "AC_SEARCH_ROLE",
+        "AC_SEARCH_FEATURE"
+      ]
   },
   components: { Login, Main }
 };
