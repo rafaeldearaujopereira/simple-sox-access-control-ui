@@ -6,28 +6,28 @@ document.title = "Access Control v 1.0";
 
 export default {
   name: "App",
-  data () {
+  data() {
     return {
       sessionId: null,
-    }
+    };
   },
   provide: {
-      systemFeatureCode: 'ACCESS_CONTROL_SYS',
-      servicePath: 'http://localhost:8888',
-      implementedFeatureCodes : [
-        "AC_SEARCH_USER",
-        "AC_SEARCH_ROLE",
-        "AC_SEARCH_FEATURE"
-      ]
+    systemFeatureCode: "ACCESS_CONTROL_SYS",
+    servicePath: "http://localhost:8888",
+    implementedFeatures: [
+      { code: "AC_SEARCH_USER", view: "User" },
+      { code: "AC_SEARCH_ROLE", view: "Role" },
+      { code: "AC_SEARCH_FEATURE", view: "Feature" }
+    ],
   },
-  components: { Login, Main }
+  components: { Login, Main },
 };
 </script>
 
 <template>
   <div class="text-center">
-    <Login v-if="!sessionId" v-model:sessionId="sessionId"/>
-    <Main v-if="sessionId" v-model:sessionId="sessionId"/>
+    <Login v-if="!sessionId" v-model:sessionId="sessionId" />
+    <Main v-if="sessionId" v-model:sessionId="sessionId" />
   </div>
 </template>
 

@@ -10,8 +10,8 @@ export default {
   props: {
     sessionId: String
   },
-  emits: ["logout"],
-  inject: ["servicePath", "systemFeatureCode", "implementedFeatureCodes"],
+  emits: ["logout", "openAndNavigateTo"],
+  inject: ["servicePath", "systemFeatureCode", "implementedFeatures"],
   components: { NavItem },
   setup(props, { emit }) {
     const menuItems = reactive([]);
@@ -20,18 +20,27 @@ export default {
     };
     const servicePath = inject("servicePath");
     const systemFeatureCode = inject("systemFeatureCode");
-    const implementedFeatureCodes = inject("implementedFeatureCodes");
+    const implementedFeatures = inject("implementedFeatures");
     let featureCodeSelected = "";
     let featureTree = {};
 
     const fillMenu = (features) => {
       if (!features) return;
       Array.from(features).forEach((feature) => {
-        if (implementedFeatureCodes.includes(feature.code)) {
+        if (implementedFeatures.map((mapped) => {return mapped.code}).includes(feature.code)) {
           menuItems.push( {code : feature.code, name : feature.name, key: feature.id } )
         }
         if (feature.children) fillMenu(feature.children);
       });
+    };
+
+    const navigateTo = (featureCode) => {
+      console.log(featureCode)
+      let features = implementedFeatures.filter(filtered => (filtered.code === featureCode));
+      if (features) {
+        console.log(features[0].view)
+        emit('openAndNavigateTo', features[0].view)
+      }
     };
 
     const logout = () => {
@@ -52,7 +61,7 @@ export default {
         .then((response) => setTree(response.data))
         .catch((error) => console.log(error));      
     });
-    return { logout, menuItems, featureCodeSelected, featureTree };
+    return { logout, navigateTo, menuItems, featureCodeSelected, featureTree };
   },
 };
 </script>
@@ -66,7 +75,7 @@ export default {
       </a>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <NavItem v-for="(item, index) in menuItems" :featureTree="featureTree" :index="index" :key="item.key" :code="item.code">{{item.name}}</NavItem>
+          <NavItem v-for="(item, index) in menuItems" :featureTree="featureTree" :index="index" :key="item.key" :code="item.code" @navigate-to="navigateTo(item.code)">{{item.name}}</NavItem>
         </ul>
         <button class="btn btn-outline-danger" type="submit" @click.prevent="logout">Logout</button>
       </div>
