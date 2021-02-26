@@ -1,28 +1,31 @@
 <script>
-import { defineAsyncComponent, reactive } from 'vue';
+import { computed, defineAsyncComponent, reactive } from 'vue';
 import NavBar from "../components/NavBar";
 
 export default {
   name: "mainView",
   props: {
-    sessionId: String,
+    sessionId: String
   },
   inject: ["servicePath", "systemFeatureCode"],
   setup(props, { emit }) {
     const selectedComponent = reactive({});
-    let iComponent = 0;
-    let AsyncComponent = null;
+    const dynamicComponent = computed(() => {
+      if (selectedComponent) {
+        return defineAsyncComponent(() => import(`./${selectedComponent.value}`))
+      } else {
+        return null
+      }
+    })
     const showView = (targetView) => {
-      console.log(targetView + " " + AsyncComponent)
+      console.log(targetView + " " + selectedComponent)
       selectedComponent.value = targetView
-      AsyncComponent = () => defineAsyncComponent(() => import(selectedComponent.value))
-      console.log(AsyncComponent)
-      iComponent++;
+      console.log(targetView + " " + selectedComponent)
     }
     const clearSessionId = () => {
       emit("update:sessionId", "")
     };
-    return { clearSessionId, showView, AsyncComponent, iComponent };
+   return { clearSessionId, showView, dynamicComponent };
   },
   components: { NavBar }
 };
@@ -30,5 +33,5 @@ export default {
 
 <template>
   <NavBar :sessionId="sessionId" @logout="clearSessionId" @open-and-navigate-to="showView($event)" />
-  <component :is="AsyncComponent" key="iComponent"></component>
+  <component :is="dynamicComponent"></component>
 </template>
