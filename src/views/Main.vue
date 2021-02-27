@@ -1,6 +1,6 @@
 <script>
-import { useRouter } from "vue-router";
 import NavBar from "../components/NavBar";
+import Feature from './Feature';
 
 export default {
   name: "mainView",
@@ -9,17 +9,15 @@ export default {
   },
   inject: ["servicePath", "systemFeatureCode"],
   setup(props, { emit }) {
-    const router = useRouter()
     const showView = (targetView) => {
       console.log("/" + targetView);
-      router.push("/" + targetView);
     };
     const clearSessionId = () => {
       emit("update:sessionId", "");
     };
     return { clearSessionId, showView };
   },
-  components: { NavBar },
+  components: { NavBar, Feature },
 };
 </script>
 
@@ -29,5 +27,5 @@ export default {
     @logout="clearSessionId"
     @open-and-navigate-to="showView($event)"
   />
-  <router-view></router-view>
+  <Feature />
 </template>
