@@ -17,12 +17,50 @@
             <div class="col-md-7">
                 <label for="parent" class="form-label">Parent</label>
                 <select class="form-select" id="parent">
-                    <option selected disabled value></option>
+                    <option value=""></option>
                     <option value="2">Config > Users</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label for="parent" class="form-label">Type</label>
+                <select class="form-select" id="parent">
+                    <option value=""></option>
+                    <option value="2">Menu</option>
                 </select>
             </div>
             
             <button type="submit" class="btn btn-primary">Search</button>
         </form>
+        
+        <table class="table table-sm table-bordered">
+          <thead>
+          <tr>
+            <th scope="col">Feature</th>
+            <th scope="col">Type</th>
+            <th scope="col">Parent</th>
+            <th scope="col">Description</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Larry the Bird</td>
+            <td>@twitter</td>
+          </tr>
+          </tbody>
+        </table>
+
     </div>
 </template>
