@@ -10,7 +10,7 @@
                 <label for="description" class="form-label">Description</label>
                 <input type="text" class="form-control" id="description" />
             </div>
-            <div class="col-md-1">
+            <div class="col-md-2">
                 <label for="code" class="form-label">Code</label>
                 <input type="text" class="form-control" id="code" />
             </div>
@@ -28,7 +28,7 @@
                     <option value="2">Menu</option>
                 </select>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2 align-bottom">
             <button type="submit" class="btn btn-primary">Search</button>
             </div>
         </form>
@@ -62,6 +62,7 @@
             <td>@twitter</td>
           </tr>
           </tbody>
+           <caption>Quantity of features: 3</caption>
         </table>
 
     </div>
