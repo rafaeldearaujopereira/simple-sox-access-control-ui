@@ -28,12 +28,13 @@
                     <option value="2">Menu</option>
                 </select>
             </div>
-            
+            <div class="col-md-2">
             <button type="submit" class="btn btn-primary">Search</button>
+            </div>
         </form>
-        
-        <table class="table table-sm table-bordered">
-          <thead>
+        <br><br>        
+        <table class="table table-sm table-bordered table-hover">
+          <thead class="table-light">
           <tr>
             <th scope="col">Feature</th>
             <th scope="col">Type</th>
@@ -44,9 +45,9 @@
           <tbody>
           <tr>
             <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+            <td class="align-left">Mark</td>
+            <td class="align-left">Otto</td>
+            <td class="align-left">@mdo</td>
           </tr>
           <tr>
             <th scope="row">2</th>
@@ -56,7 +57,8 @@
           </tr>
           <tr>
             <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
+            <td>Larry the Bird</td>
+            <td>Larry the Bird</td>
             <td>@twitter</td>
           </tr>
           </tbody>
