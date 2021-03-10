@@ -61,6 +61,60 @@
             <td>Larry the Bird</td>
             <td>@twitter</td>
           </tr>
+          <tr>
+            <th scope="row">1</th>
+            <td class="align-left">Mark</td>
+            <td class="align-left">Otto</td>
+            <td class="align-left">@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry the Bird</td>
+            <td>Larry the Bird</td>
+            <td>@twitter</td>
+          </tr>
+          <tr>
+            <th scope="row">1</th>
+            <td class="align-left">Mark</td>
+            <td class="align-left">Otto</td>
+            <td class="align-left">@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry the Bird</td>
+            <td>Larry the Bird</td>
+            <td>@twitter</td>
+          </tr>
+          <tr>
+            <th scope="row">1</th>
+            <td class="align-left">Mark</td>
+            <td class="align-left">Otto</td>
+            <td class="align-left">@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry the Bird</td>
+            <td>Larry the Bird</td>
+            <td>@twitter</td>
+          </tr>
           </tbody>
            <caption>Quantity of features: 3</caption>
         </table>
