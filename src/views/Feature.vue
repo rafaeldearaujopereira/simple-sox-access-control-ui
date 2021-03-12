@@ -44,13 +44,13 @@
           </thead>
           <tbody>
           <tr>
-            <th scope="row">1</th>
-            <td class="align-left">Mark</td>
-            <td class="align-left">Otto</td>
-            <td class="align-left">@mdo</td>
+            <td>Roles</td>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
           </tr>
           <tr>
-            <th scope="row">2</th>
+            <td>Users</td>
             <td>Jacob</td>
             <td>Thornton</td>
             <td>@fat</td>
